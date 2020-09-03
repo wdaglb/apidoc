@@ -1,0 +1,19 @@
+{
+    "name": "wdaglb/apidoc",
+    "authors": [
+        {
+            "name": "king east",
+            "email": "1207877378@qq.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "ke\\apidoc\\annotation\\": "annotation/",
+            "ke\\apidoc\\parse\\": "parse/",
+            "ke\\apidoc\\src\\": "src/"
+        }
+    },
+    "require": {
+        "doctrine/annotations": "^1.10"
+    }
+}
