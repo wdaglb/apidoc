@@ -1,5 +1,8 @@
 {
     "name": "wdaglb/apidoc",
+    "description": "apidoc",
+    "type": "library",
+    "minimum-stability": "stable",
     "authors": [
         {
             "name": "king east",
@@ -8,9 +11,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "ke\\apidoc\\annotation\\": "annotation/",
-            "ke\\apidoc\\parse\\": "parse/",
-            "ke\\apidoc\\src\\": "src/"
+            "ke\\apidoc\\": "./"
         }
     },
     "require": {
