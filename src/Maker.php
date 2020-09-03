@@ -14,21 +14,28 @@ class Maker
 {
     private $result = [];
 
-    private $file = '';
+    private $config = [];
 
-    public function __construct($result, $file)
+    public function __construct($result, $config)
     {
         $this->result = $result;
-        $this->file = $file;
+        $this->config = $config;
     }
 
 
     public function save()
     {
         $html = file_get_contents(__DIR__ . '/../template/index.html');
-        $html = str_replace('{#docs}', json_encode($this->result, JSON_UNESCAPED_UNICODE), $html);
 
-        file_put_contents($this->file, $html);
+        $vars = array_merge($this->config, [
+            'docs'=>json_encode($this->result, JSON_UNESCAPED_UNICODE)
+        ]);
+
+        $html = preg_replace_callback('/{#(\w+)}/', function ($match) use($vars) {
+            return $vars[$match[1]];
+        }, $html);
+
+        file_put_contents($this->config['html'], $html);
     }
 
 }

@@ -18,6 +18,7 @@ use ke\apidoc\src\Maker;
 class Parse
 {
     private $config = [
+        "title"=>'XX接口文档',
         // 解析器
         'parse'=>Thinkphp::class,
         // 生产器
@@ -54,7 +55,7 @@ class Parse
         }
 
         if ($this->config['html']) {
-            $maker = new $this->config['maker']($this->results, $this->config['html']);
+            $maker = new $this->config['maker']($this->results, $this->config);
             $maker->save();
         }
 
