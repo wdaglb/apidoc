@@ -3,7 +3,7 @@
 安装
 
 ```
-composer require ke/apidoc dev-master
+composer require ke/apidoc
 ```
 
 [查看注解使用说明](./docs/README.md)
