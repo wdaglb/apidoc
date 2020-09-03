@@ -39,8 +39,8 @@ class ApiDoc extends Command
     {
         (new Parse([
             'title'=>'XX接口文档',
-            'api'=>false,
-            'html'=>App::getRootPath() . 'api.html',
+            'api'=>false, // 如果需要json列表，赋予一个路径就可以
+            'html'=>App::getRootPath() . 'api.html', // 设为false则不会生成html
         ]))->execute();
     }
 
@@ -51,3 +51,5 @@ class ApiDoc extends Command
 ```
 php think apidoc
 ```
+
+![QQ截图20200903144519](./docs/QQ截图20200903144519.png "QQ截图20200903144519.png")
