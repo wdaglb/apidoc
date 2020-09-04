@@ -1,7 +1,8 @@
 {
     "name": "ke/apidoc",
-    "description": "apidoc",
     "type": "library",
+    "keywords": ["api", "apidoc", "接口文档", "0侵入"],
+    "description": "一个0侵入性的php接口文档生成助手",
     "minimum-stability": "stable",
     "authors": [
         {
@@ -15,6 +16,6 @@
         }
     },
     "require": {
-        "doctrine/annotations": "^1.10"
+        "php": ">=7.2.0"
     }
 }

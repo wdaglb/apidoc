@@ -1,12 +1,15 @@
 ## ke/apidoc
 
+一个0侵入性的php接口文档生成助手，默认支持Thinkphp5.1，需要支持更多，自行配置解析器即可(根据./parse/Thinkphp.php修改，很简单)。
+
 安装
 
 ```
 composer require ke/apidoc
 ```
 
-[查看注解使用说明](./docs/README.md)
+1. [查看注解使用说明](./docs/README.md)
+2. [查看Parse完整配置](./docs/parse.md)
 
 ThinkPHP使用
 
