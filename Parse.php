@@ -19,6 +19,8 @@ class Parse
 {
     private $config = [
         "title"=>'XX接口文档',
+        // 目录
+        'path'=>'',
         // 解析器
         'parse'=>Thinkphp::class,
         // 生产器

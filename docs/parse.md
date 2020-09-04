@@ -3,6 +3,7 @@
 参数 | 类型 | 说明
 --- | --- | ---
 title | string | 站点标题
+path | string | 指定app应用模块,可选
 parse | class namespace | 解析器,可选
 maker | class namespace | 生产器,可选
 template | string | 文档基础html模板(绝对路径),可选；模板使用{#变量名}替换数据

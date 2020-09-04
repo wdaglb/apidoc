@@ -22,13 +22,19 @@ class Thinkphp
     {
         $this->config = $config;
 
-        $path = App::getAppPath();
+        $app_path = App::getAppPath();
+        $path = $app_path . $config['path'];
+        if (substr($path, -1) !== '/') {
+            $path .= '/';
+        }
 
         $list = $this->get_list($path);
-        foreach ($list as $file) {
-            $tmp = str_replace([$path, '.php', '/'], ['', '', '\\'], $file);
+        if (is_array($list)) {
+            foreach ($list as $file) {
+                $tmp = str_replace([$app_path, '.php', '/'], ['', '', '\\'], $file);
 
-            $this->list[] = 'app\\' . $tmp;
+                $this->list[] = 'app\\' . $tmp;
+            }
         }
     }
 
