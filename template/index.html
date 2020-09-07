@@ -29,7 +29,7 @@
             padding: 20px 0;
             list-style: none;
             margin: 0;
-            height: 100%;
+            height: calc(100% - 50px);
             overflow: auto;
         }
         .sidebar a {
@@ -232,6 +232,18 @@
             padding: 10px 20px;
             display: block;
         }
+
+        /* 搜索 */
+        .search {
+            height: 50px;
+            line-height: 50px;
+            padding: 0 20px;
+        }
+        .search-input {
+            width: 100%;
+            padding: 5px;
+            outline: none;
+        }
     </style>
 </head>
 <body>
@@ -245,8 +257,16 @@
 <script id="template" type="text/html">
     <div>
         <div class="sidebar" id="sidebar">
+
+            <div class="search">
+                <input v-model="search"
+                       placeholder="输入接口名称搜索"
+                       @input="onSearchChange"
+                       class="search-input"/>
+            </div>
+
             <ul @scroll="onSidebarScroll">
-                <li v-for="(side, i) in docs" :key="i" :id="side.name">
+                <li v-for="(side, i) in showDocs" :key="i" :id="side.name">
                     <a @click="onClickSide(side)" :class="{ active: side.name === current }">
                         {{ side.title }}
 
@@ -539,9 +559,31 @@
                     formdata: {}
                 },
                 opens: [],
+                search: ''
             };
         },
         computed: {
+            showDocs: function () {
+                var docs = JSON.parse(JSON.stringify(this.docs));
+                var that = this;
+                return docs.map(function (item) {
+                    if (item.docs) {
+                        item.docs = item.docs.filter(function (doc) {
+                            return doc.title.indexOf(that.search) > -1;
+                        });
+                    }
+                    return item;
+                }).filter(function (item) {
+                    if (that.search === '') {
+                        return that.docs;
+                    }
+                    var subLen = 0;
+                    if (item.docs && item.docs.length > 0) {
+                        return true;
+                    }
+                    return item.title.indexOf(that.search) > -1;
+                });
+            },
             breadcrumb: function () {
                 if (!this.current) {
                     return [];
@@ -716,6 +758,9 @@
                         console.log(res)
                     }
                 });
+            },
+            onSearchChange: function (evt) {
+                console.log('evt', evt);
             }
         }
     });
