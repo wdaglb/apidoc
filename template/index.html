@@ -261,7 +261,6 @@
             <div class="search">
                 <input v-model="search"
                        placeholder="输入接口名称搜索"
-                       @input="onSearchChange"
                        class="search-input"/>
             </div>
 
@@ -758,9 +757,6 @@
                         console.log(res)
                     }
                 });
-            },
-            onSearchChange: function (evt) {
-                console.log('evt', evt);
             }
         }
     });
