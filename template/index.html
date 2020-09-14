@@ -550,16 +550,16 @@
                 settings: {
                     test_url: 'http://easy-admin.localhost/'
                 },
-                docs: [],
-                current: '',
+                docs: {#docs},
+            current: '',
                 api: '',
                 requestParams: {
-                    query: {},
-                    formdata: {}
-                },
-                opens: [],
+                query: {},
+                formdata: {}
+            },
+            opens: [],
                 search: ''
-            };
+        };
         },
         computed: {
             showDocs: function () {
@@ -661,9 +661,10 @@
                 });
             }
         },
-        created: function () {
-            this.docs = JSON.parse('{#docs}');
-        },
+        // 不使用json解析,防止json过大发生错误
+        // created: function () {
+        //     this.docs = JSON.parse('{#docs}');
+        // },
         mounted: function() {
             this.current = getCurrentPage();
 

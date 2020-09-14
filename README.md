@@ -6,6 +6,8 @@
 
 ```
 composer require ke/apidoc
+或
+composer require ke/apidoc dev-master
 ```
 
 1. [查看注解使用说明](./docs/README.md)
