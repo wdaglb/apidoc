@@ -10,7 +10,9 @@
 namespace ke\apidoc\parse;
 
 
+use think\Db;
 use think\facade\App;
+use think\facade\Config;
 
 class Thinkphp
 {
@@ -28,7 +30,7 @@ class Thinkphp
             $path .= '/';
         }
 
-        $list = $this->get_list($path);
+        $list = $this->getList($path);
         if (is_array($list)) {
             foreach ($list as $file) {
                 $tmp = str_replace([$app_path, '.php', '/'], ['', '', '\\'], $file);
@@ -44,7 +46,7 @@ class Thinkphp
      * @param $dir
      * @return array
      */
-    private function get_list($dir)
+    private function getList($dir)
     {
         static $ret;
         $files = glob($dir . '*');
@@ -58,6 +60,21 @@ class Thinkphp
             }
         }
         return $ret;
+    }
+
+
+    /**
+     * 获取数据表字段列表
+     * @param string $table 表名,不含前缀
+     * @return array
+     */
+    public function getDbColumns($table)
+    {
+        $pre = Config::get('database.prefix');
+        $database = Config::get('database.database');
+
+        $sql = "SELECT column_name,column_comment,data_type FROM information_schema.columns WHERE table_name='%s' AND table_schema='%s'";
+        return Db::query(sprintf($sql, $pre . $table, $database));
     }
 
 
