@@ -24,18 +24,20 @@ class Thinkphp
     {
         $this->config = $config;
 
-        $app_path = App::getAppPath();
-        $path = $app_path . $config['path'];
-        if (substr($path, -1) !== '/') {
-            $path .= '/';
-        }
+        if (isset($config['path'])) {
+            $app_path = App::getAppPath();
+            $path = $app_path . $config['path'];
+            if (substr($path, -1) !== '/') {
+                $path .= '/';
+            }
 
-        $list = $this->getList($path);
-        if (is_array($list)) {
-            foreach ($list as $file) {
-                $tmp = str_replace([$app_path, '.php', '/'], ['', '', '\\'], $file);
+            $list = $this->getList($path);
+            if (is_array($list)) {
+                foreach ($list as $file) {
+                    $tmp = str_replace([$app_path, '.php', '/'], ['', '', '\\'], $file);
 
-                $this->list[] = 'app\\' . $tmp;
+                    $this->list[] = 'app\\' . $tmp;
+                }
             }
         }
     }
