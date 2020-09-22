@@ -27,7 +27,17 @@ class MakeComment
 
         $comments = '';
         foreach ($columns as $column) {
-            $comments .= sprintf('* @result %s %s %s', $column['data_type'], $column['column_name'], $column['column_comment']) . PHP_EOL;
+            $data_type = $column['data_type'];
+            if (strpos($data_type, 'char') !== false || strpos($data_type, 'text') !== false || strpos($data_type, 'blob') !== false) {
+                $data_type = 'string';
+            } else if (strpos($data_type, 'int') !== false) {
+                $data_type = 'int';
+            } else if ($data_type === 'decimal' || $data_type === 'double') {
+                $data_type = 'float';
+            } else if (in_array($data_type, ['date', 'time', 'year', 'datetime', 'timestamp'])) {
+                $data_type = 'string';
+            }
+            $comments .= sprintf('* @result %s %s %s', $data_type, $column['column_name'], $column['column_comment']) . PHP_EOL;
         }
 
         return $comments;

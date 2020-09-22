@@ -12,8 +12,9 @@ composer require ke/apidoc dev-master
 
 1. [查看注解使用说明](./docs/README.md)
 2. [查看Parse完整配置](./docs/parse.md)
+3. [查看注释生成器说明](./docs/comment.md)
 
-ThinkPHP使用
+ThinkPHP使用注解文档
 
 ```
 // command.php
@@ -58,3 +59,51 @@ php think apidoc
 ```
 
 ![QQ截图20200903144519](./docs/QQ截图20200903144519.png "QQ截图20200903144519.png")
+
+
+
+ThinkPHP数据表字段生成@result注释片段
+
+```
+// command.php
+return [
+    \app\command\ApiDocComment::class,
+];
+
+// app/command/ApiDocComment.php
+<?php
+namespace app\command;
+
+
+use ke\apidoc\MakeComment;
+use think\console\Command;
+use think\console\Input;
+use think\console\Output;
+use think\facade\App;
+
+class ApiDocComment extends Command
+{
+    public function configure()
+    {
+        $this->setName('apidoc:comment')
+             ->addArgument('table', Argument::REQUIRED);
+    }
+
+
+    public function execute(Input $input, Output $output)
+    {
+        $table = $input->getArgument('table');
+        $info = (new MakeComment())->getComment($table);
+        $output->writeln('comment content:');
+        $output->writeln($info);
+    }
+
+}
+```
+
+命令行生成静态文档文件
+```
+php think apidoc:comment health_school
+```
+
+![QQ截图20200922183038](./docs/QQ截图20200922183038.png "QQ截图20200922183038.png")
