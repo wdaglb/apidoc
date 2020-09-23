@@ -12,7 +12,7 @@ parse | class namespace | 解析器,可选
 
 ```
 $comment = (new MakeComment([...配置参数]))
-    ->getComment($tablename // 表名,无需传入前缀);
+    ->getComment($tablename // 表名,无需传入前缀, $prefix = '字段前缀');
 
 print_r($comment);
 ```

@@ -86,14 +86,16 @@ class ApiDocComment extends Command
     public function configure()
     {
         $this->setName('apidoc:comment')
-             ->addArgument('table', Argument::REQUIRED);
+             ->addArgument('table', Argument::REQUIRED)
+             ->addOption('prefix', 'p', Option::VALUE_OPTIONAL, '字段前缀');
     }
 
 
     public function execute(Input $input, Output $output)
     {
         $table = $input->getArgument('table');
-        $info = (new MakeComment())->getComment($table);
+        $prefix = $input->getOption('prefix');
+        $info = (new MakeComment())->getComment($table, $prefix);
         $output->writeln('comment content:');
         $output->writeln($info);
     }
@@ -104,6 +106,9 @@ class ApiDocComment extends Command
 命令行生成静态文档文件
 ```
 php think apidoc:comment health_school
+or
+# 使用-字段前缀
+php think apidoc:comment health_school -p-
 ```
 
 ![QQ截图20200922183038](./docs/QQ截图20200922183038.png "QQ截图20200922183038.png")

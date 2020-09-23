@@ -20,7 +20,7 @@ class MakeComment
     }
 
 
-    public function getComment($table)
+    public function getComment($table, $prefix = '')
     {
         $parse = new $this->config['parse']($this->config);
         $columns = $parse->getDbColumns($table);
@@ -37,7 +37,7 @@ class MakeComment
             } else if (in_array($data_type, ['date', 'time', 'year', 'datetime', 'timestamp'])) {
                 $data_type = 'string';
             }
-            $comments .= sprintf('* @result %s %s %s', $data_type, $column['column_name'], $column['column_comment']) . PHP_EOL;
+            $comments .= sprintf('* @result %s %s %s', $data_type, $prefix . $column['column_name'], $column['column_comment']) . PHP_EOL;
         }
 
         return $comments;
