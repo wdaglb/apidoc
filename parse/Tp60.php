@@ -10,7 +10,7 @@
 namespace ke\apidoc\parse;
 
 
-use think\Db;
+use think\facade\Db;
 use think\facade\App;
 use think\facade\Config;
 
@@ -25,13 +25,14 @@ class Tp60
         $this->config = $config;
 
         if (isset($config['path'])) {
-            $app_path = App::getAppPath();
-            $path = $app_path . $config['path'];
+            $app_path = str_replace('\\', '/', App::getAppPath());
+            $path = str_replace('\\', '/', $app_path . $config['path']);
             if (substr($path, -1) !== '/') {
                 $path .= '/';
             }
 
             $list = $this->getList($path);
+
             if (is_array($list)) {
                 foreach ($list as $file) {
                     $tmp = str_replace([$app_path, '.php', '/'], ['', '', '\\'], $file);
@@ -72,10 +73,12 @@ class Tp60
      */
     public function getDbColumns($table)
     {
-        $pre = Config::get('database.prefix');
-        $database = Config::get('database.database');
+        $config = Config::get('database.connections.mysql');
+        $pre = $config['prefix'];
+        $database = $config['database'];
 
         $sql = "SELECT column_name,column_comment,data_type FROM information_schema.columns WHERE table_name='%s' AND table_schema='%s'";
+
         return Db::query(sprintf($sql, $pre . $table, $database));
     }
 
