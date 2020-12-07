@@ -1,6 +1,6 @@
 ## ke/apidoc
 
-一个0侵入性的php接口文档生成助手，默认支持Thinkphp5.1，需要支持更多，自行配置解析器即可(根据./parse/Thinkphp.php修改，很简单)。
+一个0侵入性的php接口文档生成助手，默认支持Thinkphp5.1/Thinkphp6.0，需要支持更多，自行配置解析器即可(根据./parse/Thinkphp.php修改，很简单)。
 
 安装
 
