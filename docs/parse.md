@@ -4,6 +4,7 @@
 --- | --- | ---
 title | string | 站点标题
 path | string | 指定app应用模块,可选
+suffix | string | 控制器后缀,可选；例如：Controller
 parse | class namespace | 解析器,可选
 maker | class namespace | 生产器,可选
 template | string | 文档基础html模板(绝对路径),可选；模板使用{#变量名}替换数据

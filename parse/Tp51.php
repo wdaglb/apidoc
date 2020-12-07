@@ -14,7 +14,7 @@ use think\Db;
 use think\facade\App;
 use think\facade\Config;
 
-class Thinkphp
+class Tp51
 {
     private $config = [];
 

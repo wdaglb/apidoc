@@ -11,7 +11,7 @@ namespace ke\apidoc;
 
 
 
-use ke\apidoc\parse\Thinkphp;
+use ke\apidoc\parse\Tp51;
 use ke\apidoc\src\Doc;
 use ke\apidoc\src\Maker;
 
@@ -22,7 +22,7 @@ class Parse
         // 目录
         'path'=>'',
         // 解析器
-        'parse'=>Thinkphp::class,
+        'parse'=>Tp51::class,
         // 生产器
         'maker'=>Maker::class,
         // 文档模板

@@ -17,7 +17,7 @@ class Doc
     private $docs = [];
 
     private $patterns = [
-        'controller'=>'^app\\\\(\w+)\\\\controller',
+        'controller'=>'^app([\\\\|\w+]*)\\\\controller',
         'apiIgnore'=>'@apiIgnore',
         'groupIgnore'=>'@groupIgnore',
         'title'=>'\/\*\*[\$\s]+?\*\s*(\s|.+?)[\$\s]+?',
