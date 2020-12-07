@@ -57,7 +57,7 @@ class Thinkphp
                 if (is_file($file) && preg_match(sprintf('/application\/(.+?)%s$/', $this->config['suffix'] . '\\.php'), $file, $match)) {
                     $ret[] = $file;
                 } else {
-                    $this->get_list($file . '/');
+                    $this->getList($file . '/');
                 }
             }
         }
